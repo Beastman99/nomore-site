@@ -349,7 +349,7 @@ export default function Nomore() {
         <div className="relative mx-auto max-w-5xl px-6 py-24 md:py-28">
           <div className="max-w-3xl">
             <div className="mb-4 inline-flex rounded-full border border-neutral-300 bg-white/80 px-4 py-1.5 text-sm text-neutral-700 shadow-sm">
-              Near Melbourne · shared land · private spaces
+              Near Melbourne · shared living · private rooms
             </div>
             <div className="mb-4 text-lg font-semibold tracking-tight">
               <span className="text-neutral-900">No</span>
@@ -371,7 +371,7 @@ export default function Nomore() {
                 "No rent",
                 "≈1–2 hrs from Melbourne",
                 "Small-group setup",
-                "Build or have your own place"
+                "Build or buy your home"
               ].map((tag) => (
                 <span key={tag} className="rounded-full border border-neutral-300 bg-white/85 px-3 py-1.5 text-sm text-neutral-700 shadow-sm">
                   {tag}
@@ -486,7 +486,7 @@ export default function Nomore() {
           </div>
         </div>
       </section>
-
+      
       <section className="mx-auto max-w-3xl px-6 py-16">
         <div className="mb-6">
           <h2 className="text-2xl font-semibold">Apply</h2>
@@ -544,6 +544,20 @@ export default function Nomore() {
           {submitStatus && <div className="text-sm text-neutral-600">{submitStatus}</div>}
         </form>
       </section>
+      <section className="mx-auto max-w-3xl px-6 py-12">
+  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-center">
+    <h2 className="text-xl font-semibold">Questions?</h2>
+    <p className="mt-2 text-neutral-600">
+      Feel free to contact at:
+    </p>
+    <a
+      href="mailto:nomore.estate@gmail.com"
+      className="mt-4 inline-block text-lg font-medium text-lime-600 underline"
+    >
+      nomore.estate@gmail.com
+    </a>
+  </div>
+</section>
     </div>
   );
 }
