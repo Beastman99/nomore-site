@@ -77,9 +77,21 @@ const tiers = [
 ];
 
 const builderQuestions = [
+  { label: "Name", type: "text" },
+  { label: "Email", type: "text" },
   { label: "How much can you realistically contribute in total?", type: "radio", options: ["$50k", "$50-70k", "$70k-100k", "$100k+"] },
   { label: "Which path are you considering?", type: "radio", options: ["Builder", "Non-builder", "Open to both"] },
-  { label: "How many people are you comfortable sharing living facilities with?", type: "radio", options: ["2", "3", "4", "5+"] },
+  { label: "What is your age?", type: "radio", options: ["18-24", "25-34", "35-44", "45+"] },
+  { label: "What is your gender?", type: "radio", options: ["Male", "Female"] },
+  { label: "Will you live with a partner?", type: "radio", options: ["Yes", "No"] },
+  { label: "Do you have children?", type: "radio", options: ["Yes", "No"] },
+  { label: "Are you an Australian citizen?", type: "radio", options: ["Yes", "No"] },
+  { label: "What is your cultural background? (e.g. religion, ethnicity etc)", type: "text" },
+  {
+    label: "How many people are you comfortable sharing living facilities with? (select all that apply)",
+    type: "checkbox",
+    options: ["2", "3", "4", "5+"]
+  },
   { label: "When would you realistically be ready to start?", type: "radio", options: ["Now", "1–3 months", "3–6 months", "6+ months"] },
   { label: "Do you have any practical skills (tools, building, logistics, etc.)?", type: "text" },
   { label: "How much time could you commit in the first 2–3 months?", type: "radio", options: ["Weekends", "Flexible", "Limited", "None"] },
@@ -277,8 +289,55 @@ function LifestyleCarousel({ perks }) {
   );
 }
 
-export default function NomorestateLandingPage() {
+export default function Nomore() {
   const [showLocations, setShowLocations] = React.useState(false);
+  const [formData, setFormData] = React.useState({});
+  const [submitStatus, setSubmitStatus] = React.useState("");
+
+  function handleChange(label, value, type) {
+    setFormData((prev) => {
+      if (type === "checkbox") {
+        const current = prev[label] || [];
+        return {
+          ...prev,
+          [label]: current.includes(value)
+            ? current.filter((v) => v !== value)
+            : [...current, value]
+        };
+      }
+
+      return {
+        ...prev,
+        [label]: value
+      };
+    });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setSubmitStatus("Submitting...");
+
+    try {
+      const response = await fetch("https://formspree.io/f/xgopodkn", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitStatus("Thanks — your response has been submitted.");
+        setFormData({});
+      } else {
+        setSubmitStatus("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setSubmitStatus("Something went wrong. Please try again.");
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white text-neutral-900">
       <section className="relative overflow-hidden border-b border-neutral-200 bg-[#f7f3eb]">
@@ -300,7 +359,7 @@ export default function NomorestateLandingPage() {
               <span className="text-neutral-900">e</span>
             </div>
             <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              Live with freedom — no <span className="text-lime-600">mortgage</span>, no <span className="text-lime-600">rent</span>.
+              Live with no <span className="text-lime-600">mortgage</span> and no <span className="text-lime-600">rent</span>.
             </h1>
             <p className="mt-5 max-w-2xl text-lg text-neutral-700">
               A small-group setup within ≈1–2 hours of Melbourne: shared land, one central hub, and separate private spaces. Clear numbers. Practical structure.
@@ -340,40 +399,39 @@ export default function NomorestateLandingPage() {
                 <div className="mt-1 text-sm text-neutral-500">Within roughly 1–2 hours of Melbourne.</div>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                {
-                  title: "Macedon Ranges",
-                  distance: "~1 hr from Melbourne",
-                  img: "/images/macedon.jpg"
-                },
-                {
-                  title: "Yarra Ranges",
-                  distance: "~1.5 hrs from Melbourne",
-                  img: "/images/yarra.jpg"
-                },
-                {
-                  title: "Daylesford",
-                  distance: "~1.5 hrs from Melbourne",
-                  img: "/images/daylesford.png"
-                },
-                {
-                  title: "Bass Coast hinterland",
-                  distance: "~1.5–2 hrs from Melbourne",
-                  img: "/images/bass.jpg"
-                }
-              ].map((loc) => (
-                <div key={loc.title} className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                  <img src={loc.img} alt={loc.title} className="h-44 w-full object-cover" />
-                  <div className="p-4">
-                    <div className="text-base font-medium text-neutral-900">{loc.title}</div>
-                    <div className="mt-1 text-sm text-neutral-500">{loc.distance}</div>
+                {[
+                  {
+                    title: "Macedon Ranges",
+                    distance: "~1 hr from Melbourne",
+                    img: "/images/macedon.jpg"
+                  },
+                  {
+                    title: "Yarra Ranges",
+                    distance: "~1.5 hrs from Melbourne",
+                    img: "/images/yarra.jpg"
+                  },
+                  {
+                    title: "Daylesford",
+                    distance: "~1.5 hrs from Melbourne",
+                    img: "/images/daylesford.png"
+                  },
+                  {
+                    title: "Bass Coast hinterland",
+                    distance: "~1.5–2 hrs from Melbourne",
+                    img: "/images/bass.jpg"
+                  }
+                ].map((loc) => (
+                  <div key={loc.title} className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                    <img src={loc.img} alt={loc.title} className="h-44 w-full object-cover" />
+                    <div className="p-4">
+                      <div className="text-base font-medium text-neutral-900">{loc.title}</div>
+                      <div className="mt-1 text-sm text-neutral-500">{loc.distance}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
               </div>
             </div>
           )}
-
         </div>
       </section>
 
@@ -434,18 +492,45 @@ export default function NomorestateLandingPage() {
           <h2 className="text-2xl font-semibold">Apply</h2>
           <p className="mt-2 text-neutral-600">This is to filter for fit, budget, seriousness, and timing.</p>
         </div>
-        <div className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+        <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
           {builderQuestions.map((q) => (
             <div key={q.label}>
               <label className="text-sm font-medium text-neutral-800">{q.label}</label>
               {q.type === "text" && (
-                <input className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2.5 outline-none transition focus:border-neutral-500" />
+                <input
+                  value={formData[q.label] || ""}
+                  onChange={(e) => handleChange(q.label, e.target.value, q.type)}
+                  className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2.5 outline-none transition focus:border-neutral-500"
+                />
               )}
               {q.type === "radio" && (
                 <div className="mt-2 flex flex-wrap gap-3">
                   {q.options.map((opt) => (
                     <label key={opt} className="flex items-center gap-2 rounded-full border border-neutral-300 px-3 py-1.5 text-sm cursor-pointer hover:bg-neutral-50">
-                      <input type="radio" name={q.label} className="accent-lime-600" />
+                      <input
+                        type="radio"
+                        name={q.label}
+                        value={opt}
+                        checked={formData[q.label] === opt}
+                        onChange={() => handleChange(q.label, opt, q.type)}
+                        className="accent-lime-600"
+                      />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
+              )}
+              {q.type === "checkbox" && (
+                <div className="mt-2 flex flex-wrap gap-3">
+                  {q.options.map((opt) => (
+                    <label key={opt} className="flex items-center gap-2 rounded-full border border-neutral-300 px-3 py-1.5 text-sm cursor-pointer hover:bg-neutral-50">
+                      <input
+                        type="checkbox"
+                        value={opt}
+                        checked={(formData[q.label] || []).includes(opt)}
+                        onChange={() => handleChange(q.label, opt, q.type)}
+                        className="accent-lime-600"
+                      />
                       {opt}
                     </label>
                   ))}
@@ -453,10 +538,11 @@ export default function NomorestateLandingPage() {
               )}
             </div>
           ))}
-          <button className="mt-2 rounded-lg bg-neutral-900 px-6 py-3 text-white shadow-sm transition hover:bg-neutral-800">
+          <button type="submit" className="mt-2 rounded-lg bg-neutral-900 px-6 py-3 text-white shadow-sm transition hover:bg-neutral-800">
             Submit
           </button>
-        </div>
+          {submitStatus && <div className="text-sm text-neutral-600">{submitStatus}</div>}
+        </form>
       </section>
     </div>
   );
