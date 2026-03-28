@@ -79,6 +79,7 @@ const tiers = [
 const builderQuestions = [
   { label: "How much can you realistically contribute in total?", type: "radio", options: ["$50k", "$50-70k", "$70k-100k", "$100k+"] },
   { label: "Which path are you considering?", type: "radio", options: ["Builder", "Non-builder", "Open to both"] },
+  { label: "How many people are you comfortable sharing living facilities with?", type: "radio", options: ["2", "3", "4", "5+"] },
   { label: "When would you realistically be ready to start?", type: "radio", options: ["Now", "1–3 months", "3–6 months", "6+ months"] },
   { label: "Do you have any practical skills (tools, building, logistics, etc.)?", type: "text" },
   { label: "How much time could you commit in the first 2–3 months?", type: "radio", options: ["Weekends", "Flexible", "Limited", "None"] },
@@ -238,7 +239,7 @@ function LifestyleCarousel({ perks }) {
   return (
     <section className="mx-auto max-w-5xl px-6 py-16">
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold">What life could like</h2>
+        <h2 className="text-2xl font-semibold">What life could look like</h2>
         <p className="mt-2 max-w-2xl text-neutral-600">
           Beyond reducing costs, the goal is to create a setup that actually improves day-to-day life. These are examples of what can be included depending on the land and group.
         </p>
@@ -276,7 +277,7 @@ function LifestyleCarousel({ perks }) {
   );
 }
 
-export default function AryaEstateLandingPage() {
+export default function NomorestateLandingPage() {
   const [showLocations, setShowLocations] = React.useState(false);
   return (
     <div className="min-h-screen bg-white text-neutral-900">
@@ -311,7 +312,7 @@ export default function AryaEstateLandingPage() {
                 "No rent",
                 "≈1–2 hrs from Melbourne",
                 "Small-group setup",
-                "Build your own place"
+                "Build or have your own place"
               ].map((tag) => (
                 <span key={tag} className="rounded-full border border-neutral-300 bg-white/85 px-3 py-1.5 text-sm text-neutral-700 shadow-sm">
                   {tag}
@@ -431,7 +432,7 @@ export default function AryaEstateLandingPage() {
       <section className="mx-auto max-w-3xl px-6 py-16">
         <div className="mb-6">
           <h2 className="text-2xl font-semibold">Apply</h2>
-          <p className="mt-2 text-neutral-600">This is meant to filter for fit, budget, seriousness, and timing.</p>
+          <p className="mt-2 text-neutral-600">This is to filter for fit, budget, seriousness, and timing.</p>
         </div>
         <div className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
           {builderQuestions.map((q) => (
