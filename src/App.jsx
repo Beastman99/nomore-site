@@ -328,7 +328,7 @@ export default function Nomore() {
       });
 
       if (response.ok) {
-        setSubmitStatus("Thanks — your response has been submitted.");
+        setSubmitStatus("Submitted. If there's a strong fit, you'll hear back soon. Otherwise, you'll receive updates as the project develops.");
         setFormData({});
       } else {
         setSubmitStatus("Something went wrong. Please try again.");
