@@ -468,7 +468,7 @@ export default function Nomore() {
     </p>
 
     <p className="mt-3 text-neutral-700">
-      There are still large land parcels within ~1–2 hours of Melbourne in the ~$90k–$200k range, depending on location and zoning.
+      There are still large land parcels within ~1–2 hours of Melbourne in the ~$100k–$200k+ range, depending on location and zoning.
     </p>
 
     <p className="mt-3 text-neutral-700">
