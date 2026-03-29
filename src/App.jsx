@@ -457,6 +457,40 @@ export default function Nomore() {
 
       <LifestyleCarousel perks={lifestylePerks} />
 
+      <section className="mx-auto max-w-3xl px-6 py-16">
+  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
+    <h2 className="text-xl font-semibold">
+      Why this isn’t as unrealistic as it sounds
+    </h2>
+
+    <p className="mt-3 text-neutral-700">
+      The numbers are simpler than most people expect.
+    </p>
+
+    <p className="mt-3 text-neutral-700">
+      There are still large land parcels within ~1–2 hours of Melbourne in the ~$90k–$200k range, depending on location and zoning.
+    </p>
+
+    <p className="mt-3 text-neutral-700">
+      Instead of one person taking on the full cost, a small group contributes toward:
+    </p>
+
+    <ul className="mt-3 space-y-1 text-neutral-700">
+      <li>– the land</li>
+      <li>– basic infrastructure</li>
+      <li>– individual living areas</li>
+    </ul>
+
+    <p className="mt-3 text-neutral-700">
+      That’s how total costs per person can realistically fall into the ~$50k–$100k range.
+    </p>
+
+    <p className="mt-3 text-neutral-700">
+      The exact setup depends on the land and what’s permitted — the goal is to design something practical within those constraints, not force a fixed model.
+    </p>
+  </div>
+</section>
+
       <section className="bg-neutral-50 py-16">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-2xl font-semibold">Two options</h2>
