@@ -1,4 +1,5 @@
 import React from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 const imageCards = [
   {
@@ -637,6 +638,7 @@ export default function Nomore() {
           </a>
         </div>
       </section>
+      <Analytics />
     </div>
   );
 }
