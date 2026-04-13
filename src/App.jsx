@@ -79,7 +79,7 @@ const tiers = [
 const builderQuestions = [
   { label: "Name", type: "text" },
   { label: "Email", type: "text" },
-  { label: "How much can you realistically contribute in total?", type: "radio", options: ["$50k", "$50-70k", "$70k-100k", "$100k+"] },
+  { label: "How much can you realistically contribute in total?", type: "radio", options: ["$40-50k", "$50-70k", "$70k-100k", "$100k+"] },
   { label: "Which path are you considering?", type: "radio", options: ["Builder", "Non-builder", "Open to both"] },
   { label: "What is your age?", type: "radio", options: ["18-24", "25-34", "35-44", "45+"] },
   { label: "What is your gender?", type: "radio", options: ["Male", "Female"] },
@@ -113,7 +113,9 @@ function Illustration({ type, className = "" }) {
         <path d="M450 330 C430 360 428 388 450 418 C472 388 470 360 450 330 Z" fill="#ff9f43" />
         <path d="M478 346 C464 370 462 392 478 412 C494 392 493 370 478 346 Z" fill="#ffd166" />
         <path d="M422 346 C406 370 405 392 422 412 C438 392 437 370 422 346 Z" fill="#ffbf69" />
-        {[220, 300, 600, 680].map((x) => <rect key={x} x={x} y="430" width="90" height="26" rx="13" fill="#8f6b49" />)}
+        {[220, 300, 600, 680].map((x) => (
+          <rect key={x} x={x} y="430" width="90" height="26" rx="13" fill="#8f6b49" />
+        ))}
       </svg>
     );
   }
@@ -260,9 +262,13 @@ function LifestyleCarousel({ perks }) {
           </div>
           <span className="text-2xl text-neutral-500 transition-transform duration-200 group-open:rotate-180">⌄</span>
         </summary>
+
         <div className="border-t border-neutral-200 px-6 pb-6 pt-6">
           <div className="overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm">
-            <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${index * 100}%)` }}>
+            <div
+              className="flex transition-transform duration-700 ease-out"
+              style={{ transform: `translateX(-${index * 100}%)` }}
+            >
               {perks.map((item) => (
                 <div key={item.title} className="min-w-full">
                   <Illustration type={item.type} className="h-72 w-full md:h-96" />
@@ -274,6 +280,7 @@ function LifestyleCarousel({ perks }) {
               ))}
             </div>
           </div>
+
           <div className="mt-4 flex items-center justify-between gap-4">
             <div className="flex gap-2">
               {perks.map((item, i) => (
@@ -286,9 +293,22 @@ function LifestyleCarousel({ perks }) {
                 />
               ))}
             </div>
+
             <div className="flex gap-2">
-              <button type="button" onClick={() => setIndex((index - 1 + perks.length) % perks.length)} className="rounded-full border border-neutral-300 px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-50">Prev</button>
-              <button type="button" onClick={() => setIndex((index + 1) % perks.length)} className="rounded-full border border-neutral-300 px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-50">Next</button>
+              <button
+                type="button"
+                onClick={() => setIndex((index - 1 + perks.length) % perks.length)}
+                className="rounded-full border border-neutral-300 px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-50"
+              >
+                Prev
+              </button>
+              <button
+                type="button"
+                onClick={() => setIndex((index + 1) % perks.length)}
+                className="rounded-full border border-neutral-300 px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-50"
+              >
+                Next
+              </button>
             </div>
           </div>
         </div>
@@ -298,7 +318,6 @@ function LifestyleCarousel({ perks }) {
 }
 
 export default function Nomore() {
-  const [showLocations, setShowLocations] = React.useState(false);
   const [showLocationPanel, setShowLocationPanel] = React.useState(false);
   const [formData, setFormData] = React.useState({});
   const [submitStatus, setSubmitStatus] = React.useState("");
@@ -337,7 +356,7 @@ export default function Nomore() {
       });
 
       if (response.ok) {
-        setSubmitStatus("Thanks — your response has been submitted.");
+        setSubmitStatus("Submitted. If there's a strong fit, you'll hear back soon. Otherwise, you'll receive updates as the project develops.");
         setFormData({});
       } else {
         setSubmitStatus("Something went wrong. Please try again.");
@@ -358,7 +377,7 @@ export default function Nomore() {
         <div className="relative mx-auto max-w-5xl px-6 py-24 md:py-28">
           <div className="max-w-3xl">
             <div className="mb-4 inline-flex rounded-full border border-neutral-300 bg-white/80 px-4 py-1.5 text-sm text-neutral-700 shadow-sm">
-              Near Melbourne · shared land · private spaces
+              Near Melbourne · shared living · private rooms
             </div>
             <div className="mb-4 text-lg font-semibold tracking-tight">
               <span className="text-neutral-900">No</span>
@@ -371,7 +390,7 @@ export default function Nomore() {
               Live with no <span className="text-lime-600">mortgage</span> and no <span className="text-lime-600">rent</span>.
             </h1>
             <p className="mt-5 max-w-2xl text-lg text-neutral-700">
-              A small-group setup within ≈1–2 hours of Melbourne: shared land, one central hub, and separate private spaces. Clear numbers. Practical structure.
+              A small-group setup within ≈1–2 hours of Melbourne: shared land, one central hub, and private living spaces within a shared home. Clear numbers. Practical structure.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -380,7 +399,7 @@ export default function Nomore() {
                 "No rent",
                 "≈1–2 hrs from Melbourne",
                 "Small-group setup",
-                "Build or have your own place"
+                "Build or buy your home"
               ].map((tag) => (
                 <span key={tag} className="rounded-full border border-neutral-300 bg-white/85 px-3 py-1.5 text-sm text-neutral-700 shadow-sm">
                   {tag}
@@ -398,6 +417,7 @@ export default function Nomore() {
               >
                 Start quick form
               </button>
+
               <button
                 type="button"
                 onClick={() => setShowLocationPanel((prev) => !prev)}
@@ -463,7 +483,7 @@ export default function Nomore() {
         <div className="grid gap-5 md:grid-cols-2">
           {imageCards.map((item) => (
             <div key={item.title} className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-              <img src={item.img} className="h-64 w-full object-cover" />
+              <img src={item.img} className="h-64 w-full object-cover" alt={item.title} />
               <div className="p-4">
                 <div className="font-medium text-neutral-900">{item.title}</div>
                 <div className="mt-1 text-sm text-neutral-600">{item.text}</div>
@@ -474,6 +494,40 @@ export default function Nomore() {
       </section>
 
       <LifestyleCarousel perks={lifestylePerks} />
+
+      <section className="mx-auto max-w-3xl px-6 py-16">
+        <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
+          <h2 className="text-xl font-semibold">
+            Why this isn’t as unrealistic as it sounds
+          </h2>
+
+          <p className="mt-3 text-neutral-700">
+            The numbers are simpler than most people expect.
+          </p>
+
+          <p className="mt-3 text-neutral-700">
+            There are still large land parcels within ~1–2 hours of Melbourne in the ~$100k–$200k+ range, depending on location and zoning.
+          </p>
+
+          <p className="mt-3 text-neutral-700">
+            Instead of one person taking on the full cost, a small group contributes toward:
+          </p>
+
+          <ul className="mt-3 space-y-1 text-neutral-700">
+            <li>– the land</li>
+            <li>– basic infrastructure</li>
+            <li>– individual living areas</li>
+          </ul>
+
+          <p className="mt-3 text-neutral-700">
+            That’s how total costs per person can realistically fall into the ~$50k–$100k range.
+          </p>
+
+          <p className="mt-3 text-neutral-700">
+            The exact setup depends on the land and what’s permitted — the goal is to design something practical within those constraints, not force a fixed model.
+          </p>
+        </div>
+      </section>
 
       <section className="bg-neutral-50 py-16">
         <div className="mx-auto max-w-5xl px-6">
@@ -510,10 +564,12 @@ export default function Nomore() {
           <h2 className="text-2xl font-semibold">Apply</h2>
           <p className="mt-2 text-neutral-600">This is to filter for fit, budget, seriousness, and timing.</p>
         </div>
+
         <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
           {builderQuestions.map((q) => (
             <div key={q.label}>
               <label className="text-sm font-medium text-neutral-800">{q.label}</label>
+
               {q.type === "text" && (
                 <input
                   value={formData[q.label] || ""}
@@ -521,6 +577,7 @@ export default function Nomore() {
                   className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2.5 outline-none transition focus:border-neutral-500"
                 />
               )}
+
               {q.type === "radio" && (
                 <div className="mt-2 flex flex-wrap gap-3">
                   {q.options.map((opt) => (
@@ -538,6 +595,7 @@ export default function Nomore() {
                   ))}
                 </div>
               )}
+
               {q.type === "checkbox" && (
                 <div className="mt-2 flex flex-wrap gap-3">
                   {q.options.map((opt) => (
@@ -556,11 +614,28 @@ export default function Nomore() {
               )}
             </div>
           ))}
+
           <button type="submit" className="mt-2 rounded-lg bg-neutral-900 px-6 py-3 text-white shadow-sm transition hover:bg-neutral-800">
             Submit
           </button>
+
           {submitStatus && <div className="text-sm text-neutral-600">{submitStatus}</div>}
         </form>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-6 py-12">
+        <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-center">
+          <h2 className="text-xl font-semibold">Questions?</h2>
+          <p className="mt-2 text-neutral-600">
+            Feel free to contact at:
+          </p>
+          <a
+            href="mailto:nomore.estate@gmail.com"
+            className="mt-4 inline-block text-lg font-medium text-lime-600 underline"
+          >
+            nomore.estate@gmail.com
+          </a>
+        </div>
       </section>
     </div>
   );
