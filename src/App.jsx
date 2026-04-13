@@ -79,7 +79,7 @@ const tiers = [
 const builderQuestions = [
   { label: "Name", type: "text" },
   { label: "Email", type: "text" },
-  { label: "How much can you realistically contribute in total?", type: "radio", options: ["$40-50k", "$50-70k", "$70k-100k", "$100k+"] },
+  { label: "How much can you realistically contribute in total?", type: "radio", options: ["$40k-50k", "$50k-70k", "$70k-100k", "$100k+"] },
   { label: "Which path are you considering?", type: "radio", options: ["Builder", "Non-builder", "Open to both"] },
   { label: "What is your age?", type: "radio", options: ["18-24", "25-34", "35-44", "45+"] },
   { label: "What is your gender?", type: "radio", options: ["Male", "Female"] },
