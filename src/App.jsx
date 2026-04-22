@@ -530,6 +530,60 @@ export default function Nomore() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-3xl px-6 py-16">
+  <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+    <div className="mb-6">
+      <h2 className="text-xl font-semibold">Built for clarity, not chaos</h2>
+      <p className="mt-2 text-neutral-700">
+        Shared ownership only works when expectations are clear from the beginning.
+        This concept is designed around written agreements, defined responsibilities,
+        and fair processes — not vague assumptions.
+      </p>
+    </div>
+
+    <div className="grid gap-4 sm:grid-cols-2">
+      {[
+        {
+          title: "Ownership clarity",
+          text: "Each person’s contribution, share, and rights documented upfront."
+        },
+        {
+          title: "Exit pathways",
+          text: "If someone wants to leave, there is a pre-agreed process for replacement, buyout, or transfer."
+        },
+        {
+          title: "Shared costs",
+          text: "Rates, utilities, maintenance and similar costs allocated transparently in advance."
+        },
+        {
+          title: "Living standards",
+          text: "Reasonable expectations around privacy, guests, noise, cleanliness and common areas agreed early."
+        },
+        {
+          title: "Decision-making",
+          text: "Simple rules for routine decisions vs major decisions."
+        },
+        {
+          title: "Resolution pathways",
+          text: "If issues arise, there is a fair step-by-step process before matters escalate."
+        }
+      ].map((item) => (
+        <div
+          key={item.title}
+          className="rounded-xl border border-neutral-200 bg-neutral-50 p-4"
+        >
+          <div className="font-medium text-neutral-900">{item.title}</div>
+          <div className="mt-1 text-sm text-neutral-600">{item.text}</div>
+        </div>
+      ))}
+    </div>
+
+    <p className="mt-6 text-sm text-neutral-600">
+      Most shared living setups fail from ambiguity, not from the idea itself.
+    </p>
+  </div>
+</section>
+
       <section className="bg-neutral-50 py-16">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-2xl font-semibold">Two options</h2>
